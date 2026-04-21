@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>{{ title }} | Audio Panel</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="topbar-btn" href="{{ url_for('ui.home') }}">🏠 Domů</a>
+      <a class="topbar-btn" href="javascript:history.back()">◀ Zpět</a>
+      <div class="topbar-title">{{ title }}</div>
+      <button class="topbar-btn topbar-btn-danger" type="button" id="close-ui-btn">✕ Zavřít</button>
+    </header>
+
+    <main class="content">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="flash-stack">
+            {% for category, message in messages %}
+              <div class="flash flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="playerbar">
+      <div class="playerbar-info">
+        <div class="playerbar-title" id="playerbar-title">Nic nehraje</div>
+        <div class="playerbar-meta" id="playerbar-meta">Vyber stanici</div>
+      </div>
+
+      <button class="playerbar-btn" id="playerbar-pause-btn">⏯</button>
+      <button class="playerbar-btn playerbar-btn-danger" id="playerbar-stop-btn">⏹</button>
+
+      <div class="playerbar-volume">
+        <span>🔊</span>
+        <input type="range" min="0" max="100" value="70" id="playerbar-volume">
+      </div>
+    </footer>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+[Unit]
+Description=Audio Panel Flask App
+After=network.target
+
+[Service]
+Type=simple
+User=honza
+WorkingDirectory=/home/honza/audio_panel
+ExecStart=/home/honza/audio_panel/.venv/bin/python /home/honza/audio_panel/app.py
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

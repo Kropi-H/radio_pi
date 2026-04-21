@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="screen-section">
+  <h2 class="section-title">Stanice</h2>
+
+  <div class="list">
+    <a href="{{ url_for('ui.add_station') }}" class="add-station-card">
+      <strong>➕ Přidat stanici</strong>
+      <span class="muted">Zadat název, kategorii a stream URL</span>
+    </a>
+
+    {% for station in stations %}
+      <div class="station-row">
+        <button class="station-main"
+                type="button"
+                data-play-station-id="{{ station.id }}">
+          <strong>{{ station.name }}</strong>
+          <span class="muted">{{ station.group_name }}</span>
+        </button>
+
+        <a class="mini-btn" href="{{ url_for('ui.edit_station', station_id=station.id) }}">✏️</a>
+
+        <form method="post"
+              action="{{ url_for('ui.remove_station', station_id=station.id) }}"
+              onsubmit="return confirm('Opravdu smazat stanici {{ station.name }}?');">
+          <button class="mini-btn mini-btn-danger" type="submit">🗑</button>
+        </form>
+      </div>
+    {% else %}
+      <div class="empty-state">
+        <strong>Zatím tu nic není</strong>
+        <span class="muted">Přidej první stanici.</span>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

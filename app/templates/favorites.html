@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="screen-section">
+  <h2 class="section-title">Oblíbené stanice</h2>
+
+  <div class="list">
+    {% for station in stations %}
+      <button class="station-main"
+              type="button"
+              data-play-station-id="{{ station.id }}">
+        <strong>{{ station.name }}</strong>
+        <span class="muted">{{ station.group_name }}</span>
+      </button>
+    {% else %}
+      <div class="empty-state">
+        <strong>Zatím nemáš oblíbené stanice</strong>
+        <span class="muted">Uprav stanici a zaškrtni oblíbené.</span>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="form-screen">
+  <h2 class="section-title">{{ title }}</h2>
+
+  <form method="post" action="{{ form_action }}" class="station-form">
+    <label class="form-label" for="name">Název stanice</label>
+    <input
+      class="form-input"
+      type="text"
+      id="name"
+      name="name"
+      maxlength="100"
+      required
+      value="{{ station.name if station else '' }}"
+    >
+
+    <label class="form-label" for="group_name">Kategorie</label>
+    <select class="form-input" id="group_name" name="group_name" required>
+      {% set current_group = station.group_name if station else 'Ostatní' %}
+      {% for group in groups %}
+        <option value="{{ group }}" {% if group == current_group %}selected{% endif %}>{{ group }}</option>
+      {% endfor %}
+    </select>
+
+    <label class="form-label" for="stream_url">URL streamu</label>
+    <input
+      class="form-input"
+      type="url"
+      id="stream_url"
+      name="stream_url"
+      placeholder="https://..."
+      required
+      value="{{ station.stream_url if station else '' }}"
+    >
+
+    <label class="form-label" for="logo_url">Logo URL (volitelné)</label>
+    <input
+      class="form-input"
+      type="url"
+      id="logo_url"
+      name="logo_url"
+      placeholder="https://..."
+      value="{{ station.logo_url if station else '' }}"
+    >
+
+    <label class="checkbox-row">
+      <input
+        type="checkbox"
+        name="is_favorite"
+        value="1"
+        {% if station and station.is_favorite %}checked{% endif %}
+      >
+      <span>Uložit do oblíbených</span>
+    </label>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">{{ submit_label }}</button>
+      <a href="{{ url_for('ui.radio') }}" class="btn btn-secondary">Zrušit</a>
+    </div>
+  </form>
+</section>
+{% endblock %}

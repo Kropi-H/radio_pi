@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="screen-section">
+  <h2 class="section-title">Nastavení</h2>
+
+  <div class="list">
+    <button class="setting-btn" type="button" onclick="setVolume(100)">
+      <strong>🔊 Hlasitost 100 %</strong>
+      <span class="muted">Rychlé nastavení hlasitosti</span>
+    </button>
+
+    <button class="setting-btn" type="button" onclick="setVolume(60)">
+      <strong>🔉 Hlasitost 60 %</strong>
+      <span class="muted">Běžná poslechová hlasitost</span>
+    </button>
+
+    <button class="setting-btn" type="button" onclick="stopPlayback()">
+      <strong>⏹ Zastavit přehrávání</strong>
+      <span class="muted">Zastaví aktuální stream</span>
+    </button>
+
+    <button class="setting-btn" type="button" onclick="closeUi()">
+      <strong>✕ Zavřít UI</strong>
+      <span class="muted">Ukončí Chromium a vrátí na desktop</span>
+    </button>
+
+    <button class="setting-btn" type="button" onclick="restartUi()">
+      <strong>🔄 Restart UI</strong>
+      <span class="muted">Znovu otevře kiosk rozhraní</span>
+    </button>
+
+    <button class="setting-btn" type="button" onclick="displayOff()">
+      <strong>🌙 Vypnout displej</strong>
+      <span class="muted">Zhasne obrazovku</span>
+    </button>
+
+    <button class="setting-btn" type="button" onclick="rebootPi()">
+      <strong>♻ Restart Raspberry Pi</strong>
+      <span class="muted">Restart celého zařízení</span>
+    </button>
+
+    <button class="setting-btn danger-block" type="button" onclick="shutdownPi()">
+      <strong>⏻ Vypnout Raspberry Pi</strong>
+      <span class="muted">Bezpečné vypnutí systému</span>
+    </button>
+  </div>
+</section>
+{% endblock %}

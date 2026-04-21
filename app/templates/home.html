@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="grid-2">
+  <a class="card-link" href="{{ url_for('ui.radio') }}">
+    <div class="card">
+      <strong>📻 Rádio</strong>
+      <span class="muted">Seznam stanic a přidávání nových</span>
+    </div>
+  </a>
+
+  <a class="card-link" href="{{ url_for('ui.favorites') }}">
+    <div class="card">
+      <strong>⭐ Oblíbené</strong>
+      <span class="muted">Tvoje nejčastější stanice</span>
+    </div>
+  </a>
+
+  <a class="card-link" href="#">
+    <div class="card">
+      <strong>🎵 Spotify</strong>
+      <span class="muted">Později napojíme Spotify Connect</span>
+    </div>
+  </a>
+
+  <a class="card-link" href="{{ url_for('ui.settings') }}">
+    <div class="card">
+      <strong>⚙️ Nastavení</strong>
+      <span class="muted">Systém a hlasitost</span>
+    </div>
+  </a>
+</section>
+{% endblock %}

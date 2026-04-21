@@ -1,0 +1,16 @@
+[Unit]
+Description=Chromium Kiosk for Audio Panel
+After=graphical.target audio-panel.service
+Requires=audio-panel.service
+
+[Service]
+Type=simple
+User=honza
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=/home/honza/.Xauthority
+ExecStart=/usr/bin/chromium --kiosk --app=http://127.0.0.1:5000
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=graphical.target
